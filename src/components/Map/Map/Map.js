@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import maps from "./Maps";
+import maps from "../data/layers/layers";
 import "leaflet/dist/leaflet.css";
-import agroclimate from "./data/agro.json";
+import agroclimate from "../data/agro.json";
 import classes from "./Map.module.css";
 
 function Map() {
@@ -26,7 +26,7 @@ function Map() {
       fillColor: color,
       weight: 0.5,
       opacity: 0.9,
-      color: "black", // Border color
+      color: "black",
       fillOpacity: 0.8,
     };
   }
@@ -40,15 +40,7 @@ function Map() {
   };
   return (
     <div className={classes.main}>
-      <div className={classes.mapHeaders}>
-        <h2 className={classes.header}>რუკის სახეობები</h2>
-        <label htmlFor="checkbox1">მადნეული</label>
-        <input id="checkbox1" type="checkbox"></input>
-        <label htmlFor="checkbox2">გეოლოგია</label>
-        <input id="checkbox2" type="checkbox"></input>
-        <label htmlFor="checkbox3">ქვათაცვენა</label>
-        <input id="checkbox3" type="checkbox"></input>
-      </div>
+      
       <div className={classes.shape}>
         <MapContainer
           center={center}

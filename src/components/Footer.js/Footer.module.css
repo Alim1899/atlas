@@ -1,0 +1,13 @@
+.list{
+    background-color: #485e70;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.listItem{
+    color: antiquewhite;
+    margin: auto;
+}
+.icon{
+    height: 40px;
+}

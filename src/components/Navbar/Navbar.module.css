@@ -1,13 +1,16 @@
 .main {
   z-index: 999999;
   background-color: #e6e7e6;
+  
 }
 
 .list {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 45px;
+height: 100%;
+border-bottom: 1px solid black;
+background-color: #abccba;
 }
 .listItem {
   cursor: pointer;
@@ -48,18 +51,38 @@
   transition: 0.3s step-end;
 }
 /* X AND MENU ICON */
+.dropDown{
+
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 7% 90%;
+border: 1px solid red;
+}
 .lines {
   z-index: 999;
+border: 1px solid red;
+padding-left: 30px;
 }
 .line,
 .close {
   margin: 5px;
   padding-bottom: 2px;
-  background-color: #465a5e;
+  background-color:#182c30;
   width: 25px;
   max-width: 45px;
   min-width: 35px;
   height: 7px;
   border-radius: 5px;
   cursor: pointer;
+
+  
+}
+.dropMenu{
+  height: 100%;
+  backdrop-filter: blur(10px);
+  
+}
+.listItem{
+  width: 50%;
+  padding-left: 35px;
 }

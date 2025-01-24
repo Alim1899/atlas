@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "../Home/Home";
-import Map from "../Map/Map";
+import Map from "../Map/Map/Map";
 const Layout = () => {
   return (
     <BrowserRouter

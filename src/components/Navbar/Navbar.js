@@ -49,8 +49,8 @@ const Navbar = () => {
           </ul>
       )}
       {dropDown && (
-        <div className={classes.drop}>
-          {" "}
+   
+
           <div className={classes.dropDown}>
             <div className={classes.lines} onClick={showList}>
               <div className={!showNavbar ? classes.line : classes.close}></div>
@@ -72,9 +72,9 @@ const Navbar = () => {
               )}
             </ul>}
           </div>
-        </div>
+ 
       )}
-      <div className={classes.logoRow}></div>
+   
     </div>
   );
 };
