@@ -1,12 +1,12 @@
 import classes from "./Home.module.css";
 import Navbar from "../Navbar/Navbar";
-import Map from "../Map/Map/Map";
+import MapLayout from "../Map/MapLayout/MapLayout";
 import Footer from "../Footer.js/Footer";
 const Home = () => {
   return (
     <div className={classes.main}>
       <Navbar />
-      <Map />
+      <MapLayout />
       <Footer/>
     </div>
   );

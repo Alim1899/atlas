@@ -1,16 +1,40 @@
-import classes from './MapList.module.css'
+import classes from "./MapList.module.css";
+import menu from "../../../assets/map/menu.svg";
+import { useState } from "react";
+import SwitchButton from "../../UI/SwitchButton";
 const MapList = () => {
+  const [showMenu, setSHowMenu] = useState(false);
+  const [query, setQuery] = useState("");
   return (
     <div className={classes.mapHeaders}>
-    <h2 className={classes.header}>რუკის სახეობები</h2>
-    <label htmlFor="checkbox1">მადნეული</label>
-    <input id="checkbox1" type="checkbox"></input>
-    <label htmlFor="checkbox2">გეოლოგია</label>
-    <input id="checkbox2" type="checkbox"></input>
-    <label htmlFor="checkbox3">ქვათაცვენა</label>
-    <input id="checkbox3" type="checkbox"></input>
-  </div>
-  )
-}
+      <div className={classes.searchBar}>
+        <input
+          className={classes.searchMap}
+          type="text"
+          placeholder="მოძებნე რუკა"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+        />
+        <img
+          onClick={() => setSHowMenu(!showMenu)}
+          className={classes.menuIcon}
+          src={menu}
+          alt="menu"
+        ></img>
+      </div>
+      {showMenu && (
+        <div className={classes.menu}>
+          <h4 className={classes.header}>რუკის ტიპები</h4>
+          <SwitchButton label="აგროკლიმატი" switchId='agroclimate' mapChecked={false} />
+          <SwitchButton label="გეოლოგია" switchId='geology' mapChecked={false} />
+          <SwitchButton label="ქვათაცვენები" switchId='rockfall' mapChecked={false} />
+          <SwitchButton label="მდინარეები" switchId='rivers' mapChecked={false} />
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default MapList
+export default MapList;
