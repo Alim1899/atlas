@@ -5,6 +5,8 @@ const initialState = {
   geology: false,
   rivers: false,
   rockfall: false,
+  opacity: 70,
+  weight: 70,
 };
 
 const reducer = (state, action) => {
@@ -17,6 +19,10 @@ const reducer = (state, action) => {
       return { ...state, rivers: action.payload };
     case "rockfall":
       return { ...state, rockfall: action.payload };
+    case "change/opacity":
+      return { ...state, opacity: action.payload };
+    case "change/weight":
+      return { ...state, weight: action.payload };
     default:
       throw new Error("Unknown action type");
   }

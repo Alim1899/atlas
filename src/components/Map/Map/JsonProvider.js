@@ -9,7 +9,7 @@ import { useMaps } from "../MapContext/MapContext";
 
 export default function JsonProvider() {
   const { state } = useMaps();
-  const { rockfall, rivers, geology, agroclimate } = state;
+  const { rockfall, rivers, geology, agroclimate, opacity, weight } = state;
 
   const customIcon = L.icon({
     iconUrl: point, // Example icon URL
@@ -23,39 +23,39 @@ export default function JsonProvider() {
       let lyr = feature.properties.Index_;
       color =
         lyr === "K"
-          ? "red"
+          ? "#feedde"
           : lyr === "Q"
-          ? "brown"
+          ? "#fdd0a2"
           : lyr === "yPz"
-          ? "goldenRod"
+          ? "#fdae6b"
           : lyr === "J"
-          ? "#abccba"
+          ? "#fd8d3c"
           : lyr === "P"
-          ? "#123abc"
+          ? "#f16913"
           : lyr === "PR+Pz1"
-          ? "#321cba"
+          ? "#d94801"
           : lyr === "N"
-          ? "yellow"
-          : "cyan";
+          ? "#fff5eb"
+          : "#8c2d04";
     } else if (feature.name === "agro") {
       const zone = feature.properties.zone;
       if (zone === "Cold") {
-        color = "#2cbbce";
+        color = "#ffffcc";
       } else if (zone === "mid_cold") {
-        color = "#4de392";
+        color = "#c2e699";
       } else if (zone === "moderate") {
-        color = "green";
+        color = "#78c679";
       } else {
-        color = "#09e80c";
+        color = "#238443";
       }
     }
 
     return {
       fillColor: color,
-      weight: 0.5,
-      opacity: 0.9,
+      weight: weight / 100,
+      opacity: opacity / 100,
       color: "black",
-      fillOpacity: 0.8,
+      fillOpacity: opacity / 100,
     };
   }
   const onEachPointFeature = (feature, layer) => {
@@ -71,7 +71,7 @@ export default function JsonProvider() {
             `);
     }
   };
-  const pointToLayer = (feature, latlng) => {
+  const pointToLayer = ( latlng) => {
     return L.marker(latlng, { icon: customIcon });
   };
 

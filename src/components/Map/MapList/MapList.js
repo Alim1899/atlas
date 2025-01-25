@@ -27,8 +27,8 @@ const MapList = () => {
       {showMenu && (
         <div className={classes.menu}>
           <h4 className={classes.header}>რუკის ტიპები</h4>
-          <SwitchButton label="აგროკლიმატი" switchId='agroclimate' mapChecked={false} />
-          <SwitchButton label="გეოლოგია" switchId='geology' mapChecked={false} />
+          <SwitchButton label="აგროკლიმატი" switchId='agroclimate' mapChecked={false} type='polygon' />
+          <SwitchButton label="გეოლოგია" switchId='geology' mapChecked={false} type='polygon'/>
           <SwitchButton label="ქვათაცვენები" switchId='rockfall' mapChecked={false} />
           <SwitchButton label="მდინარეები" switchId='rivers' mapChecked={false} />
         </div>
