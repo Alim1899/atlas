@@ -6,7 +6,7 @@ import L from "leaflet";
 import point from "../../../assets/map/point.svg";
 import riversJSON from "../data/json/rivers.json";
 import { useMaps } from "../MapContext/MapContext";
-
+import getMaps from "../MapContext/FireMaps";
 export default function JsonProvider() {
   const { state } = useMaps();
   const { rockfall, rivers, geology, agroclimate, opacity, weight } = state;
@@ -58,23 +58,26 @@ export default function JsonProvider() {
       fillOpacity: opacity / 100,
     };
   }
-  const onEachPointFeature = (feature, layer) => {
-    if (feature.properties && feature.properties.name) {
-      layer.bindPopup(`<b>${feature.properties.name}</b>`);
-    }
-  };
   const onEachPolygonFeature = (feature, layer) => {
     if (feature.properties && feature.properties.Zone_) {
       layer.bindPopup(`
-              <strong>Zone:</strong> ${feature.properties.Zone_}<br>
-              <strong>Type:</strong> ${feature.properties.Agro_tipe}
-            `);
+        <strong>Zone:</strong> ${feature.properties.Zone_}<br>
+        <strong>Type:</strong> ${feature.properties.Agro_tipe}
+        `);
     }
   };
-  const pointToLayer = ( latlng) => {
+  getMaps("rockfall");
+  const pointToLayer = (feature) => {
+    const coordinates = feature.geometry.coordinates;
+    const latlng = [coordinates[1], coordinates[0]];
     return L.marker(latlng, { icon: customIcon });
   };
 
+  const onEachPointFeature = (feature, layer) => {
+    if (feature.properties) {
+      layer.bindPopup(`<b>კლდეზვავი</b>`);
+    }
+  };
   return (
     <>
       {rockfall && (

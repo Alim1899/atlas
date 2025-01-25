@@ -10,7 +10,6 @@ const SwitchButton = ({ label, mapChecked, switchId, type }) => {
     setChecked(!checked);
     dispatch({ type: e.target.id, payload: !checked });
   };
-  console.log(type);
   return (
     <div className={classes.box}>
       <Stack direction="row">

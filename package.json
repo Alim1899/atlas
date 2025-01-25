@@ -8,6 +8,8 @@
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
     "cra-template": "1.2.0",
+    "dotenv": "^16.4.7",
+    "firebase": "^11.2.0",
     "leaflet": "^1.9.4",
     "proj4": "^2.15.0",
     "react": "^19.0.0-rc.1",
