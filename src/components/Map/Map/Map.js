@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
-import maps from "../data/layers/layers";
+import maps from "../data/layers";
 import "leaflet/dist/leaflet.css";
 import classes from "./Map.module.css";
 import JsonProvider from "./JsonProvider";

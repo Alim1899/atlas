@@ -1,16 +1,18 @@
 import { GeoJSON } from "react-leaflet";
-import agroclimateJSON from "../data/json/agro.json";
-import geologyJSON from "../data/json/geology.json";
-import rockfallJSON from "../data/json/rockfall.json";
+// import agroclimateJSON from "../data/json/agro.json";
+// import geologyJSON from "../data/json/geology.json";
+// import rockfallJSON from "../data/json/rockfall.json";
+// import riversJSON from "../data/json/rivers.json";
 import L from "leaflet";
 import point from "../../../assets/map/point.svg";
-import riversJSON from "../data/json/rivers.json";
 import { useMaps } from "../MapContext/MapContext";
-import getMaps from "../MapContext/FireMaps";
 export default function JsonProvider() {
   const { state } = useMaps();
   const { rockfall, rivers, geology, agroclimate, opacity, weight } = state;
-
+  const rockfallJSON = Object.entries(rockfall);
+  const riversJSON = Object.entries(rivers);
+  const geologyJSON = Object.entries(geology);
+  const agroclimateJSON = Object.entries(agroclimate);
   const customIcon = L.icon({
     iconUrl: point, // Example icon URL
     iconSize: [25, 21],
@@ -66,42 +68,42 @@ export default function JsonProvider() {
         `);
     }
   };
-  getMaps("rockfall");
   const pointToLayer = (feature) => {
     const coordinates = feature.geometry.coordinates;
     const latlng = [coordinates[1], coordinates[0]];
     return L.marker(latlng, { icon: customIcon });
   };
-
   const onEachPointFeature = (feature, layer) => {
     if (feature.properties) {
       layer.bindPopup(`<b>კლდეზვავი</b>`);
     }
   };
+
   return (
     <>
-      {rockfall && (
+      {rockfallJSON.length > 0 && (
         <GeoJSON
-          data={rockfallJSON.features}
+          data={rockfall.features || []}
           onEachFeature={onEachPointFeature}
           pointToLayer={pointToLayer}
         ></GeoJSON>
       )}
-      {agroclimate && (
+
+      {agroclimateJSON.length > 0 && (
         <GeoJSON
-          data={agroclimateJSON.features}
+          data={agroclimate.features}
           style={polygonStyle}
           onEachFeature={onEachPolygonFeature}
         ></GeoJSON>
       )}
-      {geology && (
+      {geologyJSON.length > 0 && (
         <GeoJSON
-          data={geologyJSON.features}
+          data={geology.features}
           style={polygonStyle}
           onEachFeature={onEachPolygonFeature}
         ></GeoJSON>
       )}
-      {rivers && <GeoJSON data={riversJSON.features}></GeoJSON>}
+      {riversJSON.length > 0 && <GeoJSON data={rivers.features}></GeoJSON>}
     </>
   );
 }
